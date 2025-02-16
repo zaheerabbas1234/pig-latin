@@ -1,0 +1,105 @@
+pig installation video link
+===========================
+https://youtu.be/xaWInB7Zir4?si=X4CP7G015-isPKxh
+
+
+experiment:11
+=============
+install and run pig then write pig latin scripts to load,sort,join,group,project and filter your data.
+--------------------------------------------------------------------------------------------------------
+save dataset in any directoty 
+----------------------------
+
+input dataset
+=============
+101,45,Hypertension,Medication
+102,34,Diabetes,Insulin
+103,67,Arthritis,Physical Therapy
+104,56,Asthma,Inhaler
+105,29,Flu,Rest and Hydration
+106,49,Hypertension,Medication
+107,60,Cancer,Chemotherapy
+108,41,Diabetes,Insulin
+109,55,Heart Disease,Medication
+110,38,Thyroid Disorder,Medication
+==================================
+
+load command
+============
+data = LOAD 'C:/Users/User/Documents/pig/medicaldataset.txt' USING PigStorage(',') AS (patient_id:int, age:int, diagnosis:chararray, treatment:chararray);
+
+after loading using the below command
+=====================================
+dump data;
+
+=================================================================================================================================
+
+filter command
+==============
+filtered_data = FILTER data BY treatment== 'Medication';
+
+dump filtered_data;
+
+======================================================================================================================================
+
+project command
+================
+projected_data = FOREACH data GENERATE patient_id, diagnosis;
+
+dump projected_data;
+
+======================================================================================================================================
+sort command
+============
+
+s = ORDER data BY age;
+
+dump s;
+
+s1 = ORDER data BY age DESC;
+
+dump s1;
+
+=====================================================================================================================================
+
+group command
+=============
+grouped_data = GROUP data BY diagnosis;
+
+dump grouped_data;
+
+========================================================================================================================================
+
+join command
+============
+
+dataset-2
+=========
+Medication,Medications prescribed to control conditions.
+Insulin,Injectable hormone for controlling diabetes.
+Physical Therapy,Rehabilitation exercises for muscle strength.
+Inhaler,Device used to administer asthma medication.
+Rest and Hydration,Recovery through rest and fluid intake.
+Chemotherapy,Treatment for cancer using drugs.
+
+====================================================================
+
+load command
+-------------
+data2  = LOAD 'C:\\Users\\User\\Documents\\pig\\medicaldataset2.txt' USING PigStorage(',') AS (treatment:chararray, treatment_description:chararray);
+
+dump data2;
+
+===================================================================
+
+final join command
+=================
+joined_data = JOIN data BY treatment, data2 BY treatment;
+
+dump joined_data;
+
+=================
+
+
+
+
