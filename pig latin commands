@@ -107,5 +107,7 @@ dump joined_data;
 =================
 
 
-
+pig mapreduce mode command
+==========================
+info = LOAD '/pig/pig.txt' USING PigStorage(',') AS (patient_id:int, age:int, diagnosis:chararray, treatment:chararray);
 
